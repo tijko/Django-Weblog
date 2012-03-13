@@ -1,0 +1,88 @@
+{% extends "bbase.html" %}
+
+{% block content %}
+<table width="1550" border="0">
+<tr>
+  <style type="text/css">
+    .main { margin-left: 15px; margin-top: 30px; padding-right: 90px; padding-left: 1px; }
+    .time { font-size: 0.8em; margin-top: 2px; }
+    .comment { border: 1px solid #eee; padding: 3px; margin-bottom: 12px; }
+    .body { font-size: 0.95em; margin-top: 2px; color: black; font-weight: bold;}
+    .messages { margin-left: 20px; } 
+    .title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
+
+    #addc { width: 508; background: #f5f5f5; padding: 3px; padding-bottom: 8px;
+        border-bottom: 1px dotted #aaa;
+        }
+    #cform { width: 700px; padding: 4px; padding-bottom: 0px; }
+    #submit { text-align: right; margin-right: 50px; width: 500px; margin-top: -5px; padding-bottom: 40px;}
+    ul { margin-bottom: 30px; }
+  </style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script></javascript>
+<script type="text/javascript">
+  $(document).ready(function() {
+   $('#comment_form').submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url art.views.post post.id %}',
+      data: $('#comment_form').serialize(),
+      dataType: 'json',      
+      success: function(){
+        location.reload(); 
+  $('#comment_form').get(0).reset();
+     },
+    });
+    return false;
+    });
+  });
+
+</script>
+  <div class="main">
+    <!-- Messages -->
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Post -->
+    <ul>
+      <div class="title">{{ post.title }}</div>
+      <ul>
+        <div class="time">{{ post.created }}</div>
+        <div class="body">{{ post.body }}</div>
+      </ul>
+      <!-- Comments -->
+      {% if comments %}
+        <p> Comments:</p>
+      {% endif %}
+      {% for comment in comments %}
+        <div class="comment">
+          <div class="time">{{ comment.created }} | {{ comment.author }}</div>
+          <div class="body">{{ comment.body|linebreaks }}</div> 
+          </form>
+        </ul>
+      </div>
+      {% endfor %}
+  <div id="addc">Add a comment</div>
+  <form action="{% url art.views.post post.id %}" method="POST" id="comment_form">{% csrf_token %}
+    <div id="cform">
+      Name: {{ form.author }}
+      <p>{{ form.body|linebreaks }}</p>
+    </div>
+    <div id="submit"><input type="submit" value="Submit"></div>
+  </form>  
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>{% block title %}All The Things{% endblock %}</title>
+	<!-- <meta http-equiv="refresh" content="2"> -->
+	<link rel="stylesheet" href="/media/style.css" type="text/css" media="screen"
+	  charset="utf-8" />
+
+	<style type="text/css">
+        div.transbox
+          {
+	  width:830px;
+          height:auto; 
+	  padding-bottom: 30px;
+	  margin:50px 50px;
+ 	  margin-left: 1px;
+          background-color:#ffffff;
+          border:1px solid black;
+          opacity:0.9;
+          filter:alpha(opacity=60);
+          }
+	div.transbox2
+	  {
+	  width:815px;
+	  height:60px;
+	  margin:50px 50px;
+	  margin-left: 1px;
+	  background-color:#151B54;
+	  border:8px solid black;
+	  opacity:0.9;
+  	  filter:alpha(opacity=60);
+	  }
+	div.transbox3 
+	  {
+	  width:80px;
+	  height:75px;
+	  padding-left:40px;
+	  background-color:#151B54;
+	  border:5px solid black;
+	  opacity:0.9;
+	  filter:alpha(opacity=60);
+	  }
+        div.transbox p
+          {
+          margin:35px 35px;
+	  font-weight:bold;
+          color:#000000;
+          }
+	  * {
+	      color: #555;
+	      font-size: 0.99em;
+	  }
+
+	  #menu a {
+	       text-decoration: none;
+	       background: #fff;
+	       border-top: 1px solid #ccc;
+	       border-bottom: 1px solid #ccc;
+	       border-right: 2px solid #fff;
+ 	       padding-right: 3px;
+	       padding-left: 34px;
+	       color: #777;
+	       font-size: 0.95em;
+	  }
+	  a:hover {
+		background: #eeebeb;
+		border-top: 1px solid #aaa;
+		border-bottom: 1px solid #aaa;
+		color: #555;
+	  }
+	
+	  #container { margin: auto; width: 800px; border: 0px solid; }
+	  p { font-size: 0.95em; }
+	  h3 { margin-right: 5px; display: inline; }
+	</style>
+</head>
+<body style="background-image:url('{{ STATIC_URL }}/static/fuji.jpeg');background-attachment:fixed;">
+</body>
+<body>
+  <div id="sidebar"> {% block sidebar %} {% endblock %} </div> 
+  <div id="container"> 
+<!--- hi-O -->
+    <div id="menu">
+    <div class="transbox2">
+      {% block nav-global %}
+        <!-- MENU -->
+        <STYLE>h3 {FONT-SIZE: 30pt;color:#4C787E;}</STYLE>
+        <CENTER>
+        <h3>All The Things!!!</h3>
+        </CENTER>
+      <!---put in other option links >> 'about' -->
+          <a href="{% url art.views.main %}">Home</a> 
+          <a href="{% url art.views.index %}">Index</a> 
+      {% endblock nav-global %}
+    </div>
+    </div>
+    <div class="transbox">
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

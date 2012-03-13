@@ -1,0 +1,20 @@
+{% extends "bbase.html" %}
+{% block content %}
+<table width="1550" border="0">
+<tr>
+  <style type="text/css">
+    .main { margin-left: 15px; margin-top: 30px; }
+  </style>
+  <div class="main">
+
+{% if latest_post_list %}
+ {% for post in latest_post_list %}
+     <div>{{ post.created }}<a href="{% url vit.art.views.post post.id%}"> {{post.title}}</a></div>
+
+ {% endfor %}
+{% else %}
+    <p> No Post are available. </p>
+{% endif %}
+  </div>
+  </style>
+{% endblock %}
